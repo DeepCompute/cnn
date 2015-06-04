@@ -96,7 +96,7 @@ public class CNN implements Serializable {
 			int epochsNum = trainset.size() / batchSize;
 			if (trainset.size() % batchSize != 0)
 				epochsNum++;
-			logger.info("{} th iter epochsNum: {}", t, epochsNum);
+			logger.info("第{}次迭代，epochsNum: {}", t, epochsNum);
 			int right = 0;
 			int count = 0;
 			for (int i = 0; i < epochsNum; i++) {
@@ -121,9 +121,9 @@ public class CNN implements Serializable {
 			double p = 1.0 * right / count;
 			if (t % 10 == 1 && p > 0.96) {
 				ALPHA = 0.001 + ALPHA * 0.9;
-				logger.info("Set alpha = {}", ALPHA);
+				logger.info("设置 alpha = {}", ALPHA);
 			}
-			logger.info("precision {}/{}={}.", right, count, p);
+			logger.info("计算精度： {}/{}={}.", right, count, p);
 		}
 
 	}
@@ -139,7 +139,7 @@ public class CNN implements Serializable {
 
 		@Override
 		public void run() {
-			System.out.println("Input & to stop train.");
+			logger.info("输入&符号停止训练.");
 			while (true) {
 				try {
 					int a = System.in.read();
@@ -151,12 +151,13 @@ public class CNN implements Serializable {
 					e.printStackTrace();
 				}
 			}
-			System.out.println("Lisenter stop");
+			System.out.println("监听停止.");
 		}
 
 	}
 
-	public double test(DataSet trainset) {
+	@SuppressWarnings("unused")
+	private double test(DataSet trainset) {
 		Layer.prepareForNewBatch();
 		Iterator<Record> iter = trainset.iter();
 		int right = 0;
@@ -174,12 +175,12 @@ public class CNN implements Serializable {
 				right++;
 		}
 		double p = 1.0 * right / trainset.size();
-		logger.info("precision\t{}", p + "");
+		logger.info("计算精度为：\t{}", p + "");
 		return p;
 	}
 
 	public void predict(DataSet testset, String fileName) {
-		logger.info("Beginning predict ...");
+		logger.info("开始预测 ...");
 		try {
 			//			int max = layers.get(layerNum - 1).getClassNum();
 			PrintWriter writer = new PrintWriter(new File(fileName));
@@ -207,7 +208,7 @@ public class CNN implements Serializable {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-		logger.info("Finishing predict ...");
+		logger.info("完成预测 ...");
 	}
 
 	@SuppressWarnings("unused")

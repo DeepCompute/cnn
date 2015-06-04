@@ -29,24 +29,24 @@ public class ConcurentRunner {
 		exec.shutdown();
 	}
 
-	public abstract static class Task implements Runnable {
+	/*	public abstract static class Task implements Runnable {
 
-		int start, end;
+			int start, end;
 
-		public Task(int start, int end) {
-			this.start = start;
-			this.end = end;
-			logger.info("new Task \t start {} end {}.", start, end);
-		}
+			public Task(int start, int end) {
+				this.start = start;
+				this.end = end;
+				logger.info("new Task \t start {} end {}.", start, end);
+			}
 
-		@Override
-		public void run() {
-			process(start, end);
-		}
+			@Override
+			public void run() {
+				process(start, end);
+			}
 
-		public abstract void process(int start, int end);
+			public abstract void process(int start, int end);
 
-	}
+		}*/
 
 	public abstract static class TaskManager {
 

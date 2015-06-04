@@ -6,8 +6,6 @@ import info.hb.cnn.core.Layer;
 import info.hb.cnn.core.Layer.Size;
 import info.hb.cnn.data.DataSet;
 import info.hb.cnn.utils.ConcurentRunner;
-import info.hb.cnn.utils.TimedTest;
-import info.hb.cnn.utils.TimedTest.TestTask;
 
 public class CNNMain {
 
@@ -15,16 +13,10 @@ public class CNNMain {
 
 	public static void main(String[] args) {
 
-		new TimedTest(new TestTask() {
-			@Override
-			public void process() {
-				System.err.println("训练阶段：");
-				runTrain();
-				System.err.println("测试阶段：");
-				runTest();
-			}
-		}, 1).test();
-
+		System.err.println("训练阶段：");
+		runTrain();
+		System.err.println("测试阶段：");
+		runTest();
 		ConcurentRunner.stop();
 
 	}
@@ -38,7 +30,7 @@ public class CNNMain {
 		builder.addLayer(Layer.buildConvLayer(12, new Size(5, 5)));
 		builder.addLayer(Layer.buildSampLayer(new Size(2, 2)));
 		builder.addLayer(Layer.buildOutputLayer(10));
-		CNN cnn = new CNN(builder, 50);
+		CNN cnn = new CNN(builder, 10);
 		// 加载训练数据
 		String trainSet = "dataset/train.format";
 		DataSet dataset = DataSet.load(trainSet, ",", 784);
@@ -56,6 +48,7 @@ public class CNNMain {
 		DataSet testSet = DataSet.load("dataset/test.format", ",", -1);
 		// 预测结果
 		cnn.predict(testSet, "dataset/test.predict");
+		testSet.clear();
 	}
 
 }
