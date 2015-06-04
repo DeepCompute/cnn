@@ -90,7 +90,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>info.hb.cnn.main.CNNMain</mainClass>
+							<mainClass>info.hb.cnn.main.CNNMnist</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
