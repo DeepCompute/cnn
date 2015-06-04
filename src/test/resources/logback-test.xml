@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{MMdd.HHmmss.SSS} [%-20t] [%-5p] [%-20c] [L:%-3L] - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="edu.ustc" level="DEBUG">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<root level="DEBUG">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>
