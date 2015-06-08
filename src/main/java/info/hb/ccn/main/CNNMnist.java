@@ -30,11 +30,11 @@ public class CNNMnist {
 	public static void runTrain() {
 		// 构建网络层次结构
 		LayerBuilder builder = new LayerBuilder();
-		builder.addLayer(Layer.buildInputLayer(new Size(28, 28)));
-		builder.addLayer(Layer.buildConvLayer(6, new Size(5, 5)));
-		builder.addLayer(Layer.buildSampLayer(new Size(2, 2)));
-		builder.addLayer(Layer.buildConvLayer(12, new Size(5, 5)));
-		builder.addLayer(Layer.buildSampLayer(new Size(2, 2)));
+		builder.addLayer(Layer.buildInputLayer(new Size(28, 28))); // 输入层输出map大小为28×28
+		builder.addLayer(Layer.buildConvLayer(6, new Size(5, 5))); // 卷积层输出map大小为24×24,24=28+1-5
+		builder.addLayer(Layer.buildSampLayer(new Size(2, 2))); // 采样层输出map大小为12×12,12=24/2
+		builder.addLayer(Layer.buildConvLayer(12, new Size(5, 5))); // 卷积层输出map大小为8×8,8=12+1-5
+		builder.addLayer(Layer.buildSampLayer(new Size(2, 2))); // 采样层输出map大小为4×4,4=8/2
 		builder.addLayer(Layer.buildOutputLayer(10));
 		CNN cnn = new CNN(builder, 10);
 		// 加载训练数据
