@@ -442,7 +442,8 @@ public class CNN implements Serializable {
 			throw new RuntimeException("map");
 		for (int i = 0; i < mapSize.x; i++) {
 			for (int j = 0; j < mapSize.y; j++) {
-				inputLayer.setMapValue(0, i, j, attr[mapSize.x * i + j]);
+				// inputLayer.setMapValue(0, i, j, attr[mapSize.x * i + j]);
+				inputLayer.setMapValue(0, i, j, attr[mapSize.y * i + j]);
 			}
 		}
 	}
